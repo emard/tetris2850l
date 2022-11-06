@@ -14,7 +14,7 @@ def chkFig(crds,s): # collision detection
 def putFig(FP,s): # decode and put figure on the screen
     c = lambda el,n: -1 if (n >> el & 3) == 3 else 1 if (n >> el & 3) == 1 else 0  
     pos = [ c(i ,f[ FP[3] ][ FP[2] ] ) for i in range(0,15,2)[::-1]]
-    return chkFig([map(lambda x,y: x+y, FP[0:2]*4,pos)[i-2:i] for i in range(2,9,2)],s)
+    return chkFig([list(map(lambda x,y: x+y, FP[0:2]*4,pos))[i-2:i] for i in range(2,9,2)],s)
 def MoveFig(FP,key,d): #figure moving function 
     FP[0] = FP[0] - d if key == curses.KEY_LEFT else FP[0] + d if key == curses.KEY_RIGHT else FP[0]
     FP[1] = FP[1] + d if key in [curses.KEY_DOWN, -1] else FP[1]  
@@ -47,7 +47,7 @@ while 1: # main loop
             FigPos = [8,3,0,randrange(0,6,1)]
             putFig(FigPos,1)
 curses.endwin() # back to console
-print '\n  Tetris-50l (by Kris Cieslak),\n  Thanks for playing, your score: '+str(score)+'\n'
+print('\n  Tetris-50l (by Kris Cieslak),\n  Thanks for playing, your score: '+str(score)+'\n')
 
 """
 TETRIS-50lines by Kris Cieslak (defaultset.blogspot.com)
